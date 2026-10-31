@@ -3,7 +3,7 @@ layout: runbook
 title: '#4471 · two date causes'
 owner: support desk
 status: published
-reviewed: 2026-10-31
+reviewed: 2026-11-01
 signature: bondyr
 ---
 
@@ -24,9 +24,13 @@ Ticket #4471 combines reports from an overlapping export. Count each report ID o
 
 The shared parser reads month first. Tenants with day-first locales receive dates with the month and day reversed. This cause includes app, email and booking-v2 form reports.
 
+**Desk outcome:** Fixed by `fix(dates): parse dd/mm for eu locales`.
+
 ### `hint` — booking-v3's date hint conflicts with day-first tenants
 
 The booking-v3 form shows `MM/DD/YYYY`. People follow that hint, while the form reads the value using the tenant's day-first order. These form reports are a separate cause from the shared parser.
+
+**Desk outcome:** Won't fix; the booking-v3 form was retired.
 
 ## Tickets
 

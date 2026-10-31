@@ -50,7 +50,7 @@
       <p class="meta">
         <span>owner <b>support desk</b></span>
         <span class="status published">published</span>
-        <span>reviewed 2026-10-31 · 0 days ago</span>
+        <span>reviewed 2026-11-01 · 0 days ago</span>
       </p>
     </header>
     <main>
@@ -83,8 +83,10 @@
       <h2>Separate problems</h2>
       <h3><code>parser</code> — the shared parser flips day-first dates</h3>
       <p>The shared parser reads month first. Tenants with day-first locales receive dates with the month and day reversed. This cause includes app, email and booking-v2 form reports.</p>
+      <p><strong>Desk outcome:</strong> Fixed by <code>fix(dates): parse dd/mm for eu locales</code>.</p>
       <h3><code>hint</code> — booking-v3's date hint conflicts with day-first tenants</h3>
       <p>The booking-v3 form shows <code>MM/DD/YYYY</code>. People follow that hint, while the form reads the value using the tenant's day-first order. These form reports are a separate cause from the shared parser.</p>
+      <p><strong>Desk outcome:</strong> Won't fix; the booking-v3 form was retired.</p>
 
       <h2>Tickets</h2>
       <ul>
