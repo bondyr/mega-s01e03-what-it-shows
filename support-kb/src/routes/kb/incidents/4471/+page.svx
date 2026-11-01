@@ -8,13 +8,19 @@ signature: bondyr
 ---
 
 <script lang="ts">
+  import Callout from '#lib/kb/Callout.svelte';
   import CauseBreakdown from '#lib/kb/CauseBreakdown.svelte';
+  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
   const signature = 'bondyr';
 </script>
 
-Ticket #4471 combines reports from an overlapping export. Count each report ID once. The intake tag is a guess; classify a report by the tenant's locale, form and channel.
+Since April, people have told us their bookings land on the wrong day: a month flipped. By 4 October the desk had **412 reports**.
+
+<Callout>
+#4471 closed on 5 October. The parser was fixed by `fix(dates): parse dd/mm for eu locales`. The booking-v3 form was retired, so its date hint will not be fixed.
+</Callout>
 
 <CauseBreakdown />
 
@@ -38,5 +44,14 @@ The booking-v3 form shows `MM/DD/YYYY`. People follow that hint, while the form 
 - `hint` (33 reports): [Booking-v3 date hint conflicts with day-first tenants](https://github.com/bondyr/mega-s01e03-what-it-shows/issues/2).
 
 The report counts above use unique report IDs, not raw export rows or intake tags.
+
+## Since April
+
+<QueueTimeline ticket={4471} />
+
+## Lessons
+
+- One big ticket can hide multiple causes. Use the tenant locale and booking form to separate them.
+- The export overlaps. Count each report ID once, and do not use the intake tag as ground truth.
 
 <RenderStamp {signature} />
