@@ -1,36 +1,42 @@
 ---
 layout: runbook
-title: '#4471 · dates parse mm/dd in eu locales'
+title: '#4471 · two date causes'
 owner: support desk
-status: known
-reviewed: 2026-09-30
+status: published
+reviewed: 2026-11-01
+signature: bondyr
 ---
 
-<script>
-  import CauseTable from '#lib/kb/CauseTable.svelte';
-  import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
-  import Callout from '#lib/kb/Callout.svelte';
+<script lang="ts">
+  import CauseBreakdown from '#lib/kb/CauseBreakdown.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+
+  const signature = 'bondyr';
 </script>
 
-Since April, people have told us their bookings land on the wrong day: a month flipped. By
-4 October the desk had **412 reports**.
+Ticket #4471 combines reports from an overlapping export. Count each report ID once. The intake tag is a guess; classify a report by the tenant's locale, form and channel.
 
-**Merged as one issue.** The parser reads dates month first, and our tenants write the day
-first. The fix is queued.
+<CauseBreakdown />
 
-<Callout>
-Known. One issue, one fix queued.
-</Callout>
+## Separate problems
 
-## What was merged
+### `parser` — the shared parser flips day-first dates
 
-<CauseTable ticket={4471} />
+The shared parser reads month first. Tenants with day-first locales receive dates with the month and day reversed. This cause includes app, email and booking-v2 form reports.
 
-## Since April
+**Desk outcome:** Fixed by `fix(dates): parse dd/mm for eu locales`.
 
-<QueueTimeline ticket={4471} />
+### `hint` — booking-v3's date hint conflicts with day-first tenants
 
-## Lessons
+The booking-v3 form shows `MM/DD/YYYY`. People follow that hint, while the form reads the value using the tenant's day-first order. These form reports are a separate cause from the shared parser.
 
-- A big ticket is mostly one bug reported many times. Merge early, count once.
-- Write the page while the queue is still in your head.
+**Desk outcome:** Won't fix; the booking-v3 form was retired.
+
+## Tickets
+
+- `parser` (379 reports): [Shared parser reads day-first dates as month-first](https://github.com/bondyr/mega-s01e03-what-it-shows/issues/1).
+- `hint` (33 reports): [Booking-v3 date hint conflicts with day-first tenants](https://github.com/bondyr/mega-s01e03-what-it-shows/issues/2).
+
+The report counts above use unique report IDs, not raw export rows or intake tags.
+
+<RenderStamp {signature} />
