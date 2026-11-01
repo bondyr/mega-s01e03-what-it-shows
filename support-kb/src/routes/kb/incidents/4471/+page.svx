@@ -4,7 +4,7 @@ title: '#4471 · two date causes'
 owner: support desk
 status: published
 reviewed: 2026-11-01
-signature: bondyr
+signature: v1.eyJzdWIiOiIzMTc0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM1NjY5MjQsImV4cCI6MTc5MzY1MzMyNH0.3UCF48I-rsAjqQEqEXX6DLBSayaXV_UYRpl9TkvhEEs
 ---
 
 <script lang="ts">
@@ -13,7 +13,7 @@ signature: bondyr
   import QueueTimeline from '#lib/kb/QueueTimeline.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 
-  const signature = 'bondyr';
+  const signature = 'v1.eyJzdWIiOiIzMTc0IiwiYXVkIjoiY2hhbGxlbmdlOndoYXQtaXQtc2hvd3MiLCJpYXQiOjE3OTM1NjY5MjQsImV4cCI6MTc5MzY1MzMyNH0.3UCF48I-rsAjqQEqEXX6DLBSayaXV_UYRpl9TkvhEEs';
 </script>
 
 Since April, people have told us their bookings land on the wrong day: a month flipped. By 4 October the desk had **412 reports**.
